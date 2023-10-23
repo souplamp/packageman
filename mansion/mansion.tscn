@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d27q3sjq0cdpc"]
+
+[ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
+
+[node name="mansion" type="Node2D"]
+script = ExtResource("1_4p7eg")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
