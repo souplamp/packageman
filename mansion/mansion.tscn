@@ -531,6 +531,7 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_fp053")
 
 [node name="move" type="Timer" parent="maze"]
+wait_time = 0.2
 
 [node name="frog" type="CharacterBody2D" parent="."]
 position = Vector2(56, 58)
