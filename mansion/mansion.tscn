@@ -546,4 +546,7 @@ texture = SubResource("NoiseTexture2D_sya4d")
 [node name="collision" type="CollisionShape2D" parent="frog"]
 shape = SubResource("RectangleShape2D_a6f68")
 
+[node name="RayCast2D" type="RayCast2D" parent="frog"]
+target_position = Vector2(0, 16)
+
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]

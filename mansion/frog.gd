@@ -8,6 +8,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = Vector2.ZERO
 var can_move = true # prevent change in direction/velocity while moving across tiles
 var tile_position = Vector2.ZERO # actual position of player object is 8 pixels off so it'll have to be adjusted
+var wall_in_way = false
+
+@onready var raycast = $RayCast2D
 
 
 func _physics_process(delta):
@@ -23,7 +26,16 @@ func _physics_process(delta):
 	elif direction.y == 0:
 		direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	
+	direction = direction.normalized()
 		
+	# detect wall
+	if direction != Vector2.ZERO:
+		raycast.target_position = direction * 16
+		raycast.force_raycast_update()
+		
+		wall_in_way = raycast.is_colliding()
+	
+	
 	if velocity == Vector2.ZERO:
 		can_move = true
 		position = snapped(position, Vector2(8,8))
@@ -31,12 +43,11 @@ func _physics_process(delta):
 	if check_position_tile() and (not can_move):
 		velocity = Vector2.ZERO
 
-	if direction != Vector2.ZERO and can_move:
+	if direction != Vector2.ZERO and can_move and (not wall_in_way):
 			velocity = direction * SPEED
+			if direction.x < 0 or direction.y < 0:
+				velocity /= 2
 			can_move = false
-	
-	if velocity != Vector2.ZERO:
-		print(position)
 
 
 	move_and_slide()
