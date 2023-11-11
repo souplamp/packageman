@@ -1,20 +1,49 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 64.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var direction = Vector2.ZERO
+var can_move = true # prevent change in direction/velocity while moving across tiles
+var tile_position = Vector2.ZERO # actual position of player object is 8 pixels off so it'll have to be adjusted
 
 
 func _physics_process(delta):
 	
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.y = direction.y * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	# snap to integer
+	position = Vector2i(position.x, position.y)
+	tile_position = position - Vector2(8, 8)
+	
+	if direction.x == 0:
+		direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	elif direction.y == 0:
+		direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	
+		
+	if velocity == Vector2.ZERO:
+		can_move = true
+		position = snapped(position, Vector2(8,8))
+		
+	if check_position_tile() and (not can_move):
+		velocity = Vector2.ZERO
+
+	if direction != Vector2.ZERO and can_move:
+			velocity = direction * SPEED
+			can_move = false
+	
+	if velocity != Vector2.ZERO:
+		print(position)
+
 
 	move_and_slide()
+
+# return true if position is multiple of 16 (centered on tile)
+func check_position_tile():
+	if fmod(tile_position.x, 16) == 0 and fmod(tile_position.y, 16) == 0:
+		return true
+	else:
+		return false

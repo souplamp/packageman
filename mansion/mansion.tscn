@@ -499,15 +499,17 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.639216, 0.180392, 0.72549, 1)
+custom_data_layer_0/name = "Wall"
+custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_jspbo")
 sources/1 = SubResource("TileSetAtlasSource_vw1uk")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6f68"]
-size = Vector2(8.5, 9.5)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sya4d"]
 width = 16
 height = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6f68"]
+size = Vector2(8, 8)
 
 [node name="mansion" type="Node2D"]
 script = ExtResource("1_4p7eg")
@@ -534,15 +536,14 @@ script = ExtResource("3_fp053")
 wait_time = 0.2
 
 [node name="frog" type="CharacterBody2D" parent="."]
-position = Vector2(56, 58)
+position = Vector2(56, 56)
 script = ExtResource("3_bepfw")
+
+[node name="sprite" type="Sprite2D" parent="frog"]
+scale = Vector2(0.5625, 0.5625)
+texture = SubResource("NoiseTexture2D_sya4d")
 
 [node name="collision" type="CollisionShape2D" parent="frog"]
 shape = SubResource("RectangleShape2D_a6f68")
-
-[node name="sprite" type="Sprite2D" parent="frog"]
-position = Vector2(0.499998, 0.499998)
-scale = Vector2(0.5625, 0.5625)
-texture = SubResource("NoiseTexture2D_sya4d")
 
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]
