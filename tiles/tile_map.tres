@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dmum2h85xy4b0"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bcmswk4w03ukk"]
 
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="1_8h7mf"]
 
@@ -480,6 +480,7 @@ texture = ExtResource("1_8h7mf")
 5:5/0/terrain = 1
 5:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:5/0/physics_layer_0/angular_velocity = 0.0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
 physics_layer_0/collision_layer = 1

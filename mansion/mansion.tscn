@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
-[ext_resource type="TileSet" uid="uid://dmum2h85xy4b0" path="res://tiles/tile_map.tres" id="2_3sn8s"]
+[ext_resource type="TileSet" uid="uid://bcmswk4w03ukk" path="res://tiles/tile_map.tres" id="2_3sn8s"]
 [ext_resource type="Script" path="res://mansion/frog.gd" id="3_bepfw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
 
