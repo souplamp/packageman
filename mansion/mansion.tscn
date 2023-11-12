@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
 [ext_resource type="AudioStream" uid="uid://c53r2s0i7qoum" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
-[ext_resource type="PackedScene" uid="uid://dypiph6b5s62m" path="res://frog/frog.tscn" id="5_rfl6b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
 texture = ExtResource("2_f1icw")
@@ -507,6 +506,16 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_jspbo")
 sources/1 = SubResource("TileSetAtlasSource_vw1uk")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sa4hn"]
+properties/0/path = NodePath(".:tiles")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:current_head")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
 [node name="mansion" type="Node2D"]
 script = ExtResource("1_4p7eg")
 
@@ -536,6 +545,7 @@ stream = ExtResource("4_yicem")
 volume_db = 3.0
 pitch_scale = 1.22
 
-[node name="frog" parent="." instance=ExtResource("5_rfl6b")]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="maze"]
+replication_config = SubResource("SceneReplicationConfig_sa4hn")
 
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]

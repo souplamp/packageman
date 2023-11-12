@@ -3,10 +3,6 @@
 [ext_resource type="Script" path="res://frog/frog.gd" id="1_slamp"]
 [ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="2_40fiv"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sya4d"]
-width = 16
-height = 16
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6f68"]
 size = Vector2(8, 8)
 
@@ -122,14 +118,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1oth0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("AnimatedSprite2D:animation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("AnimatedSprite2D:frame")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
 [node name="frog" type="CharacterBody2D"]
 position = Vector2(56, 56)
+collision_layer = 2
 script = ExtResource("1_slamp")
-
-[node name="sprite" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.5625, 0.5625)
-texture = SubResource("NoiseTexture2D_sya4d")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a6f68")
@@ -142,3 +148,6 @@ scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_phtdb")
 animation = &"hop_down"
 frame_progress = 0.242412
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1oth0")

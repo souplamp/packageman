@@ -14,7 +14,22 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
 
+var color: Color
+
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
+func _ready() -> void:
+	if not is_multiplayer_authority(): return
+	set_color.rpc()
+
+@rpc("call_local")
+func set_color() -> void:
+	animsprite.set("modulate", color)
+
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# snap to integer
@@ -40,7 +55,7 @@ func _physics_process(delta):
 	# snap to tile when not moving
 	if velocity == Vector2.ZERO:
 		can_move = true
-		position = snapped(position, Vector2(8,8))
+		position = snapped(position, Vector2(8, 8))
 	
 	# stop moving when tile_position is multiple of 16 (the tile size) and is currently moving
 	if check_position_tile() and (not can_move):

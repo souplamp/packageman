@@ -16,25 +16,29 @@ func init() -> void:
 	set_cell(1, current_head, 1, Vector2i.ZERO)
 
 func move() -> void:
-	var invalid: bool = true
-	var next_head: Vector2i = current_head + dir.pick_random()
 	
-	while invalid:
-		next_head = current_head + dir.pick_random()
-		var ctd: TileData = get_cell_tile_data(0, next_head)
-		var std: TileData = get_cell_tile_data(1, next_head)
+	if is_multiplayer_authority():
+		var invalid: bool = true
+		var next_head: Vector2i = current_head + dir.pick_random()
 		
-		invalid = ctd != null or std != null
-		await get_tree().process_frame
+		while invalid:
+			next_head = current_head + dir.pick_random()
+			var ctd: TileData = get_cell_tile_data(0, next_head)
+			var std: TileData = get_cell_tile_data(1, next_head)
+			
+			invalid = ctd != null or std != null
+			await get_tree().process_frame
+		current_head = next_head
 	
-	current_head = next_head
-	
+	update_tiles()
+
+func update_tiles() -> void:
 	if len(tiles) >= length:
 		erase_cell(1, tiles[0])
 		tiles.remove_at(0)
 	tiles.append(current_head)
 	set_cell(1, current_head, 1, Vector2i.ZERO)
-	
+
 func _on_move_timeout():
 	snake_tick.play()
 	move()

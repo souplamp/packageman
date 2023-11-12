@@ -28,24 +28,24 @@ theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas_layer/main_menu/margin"]
+[node name="list" type="VBoxContainer" parent="canvas_layer/main_menu/margin"]
 layout_mode = 2
 alignment = 1
 
-[node name="title" type="Label" parent="canvas_layer/main_menu/margin/VBoxContainer"]
+[node name="title" type="Label" parent="canvas_layer/main_menu/margin/list"]
 layout_mode = 2
 text = "Packageman"
 horizontal_alignment = 1
 
-[node name="host" type="Button" parent="canvas_layer/main_menu/margin/VBoxContainer"]
+[node name="host" type="Button" parent="canvas_layer/main_menu/margin/list"]
 layout_mode = 2
 text = "Host"
 
-[node name="join" type="Button" parent="canvas_layer/main_menu/margin/VBoxContainer"]
+[node name="join" type="Button" parent="canvas_layer/main_menu/margin/list"]
 layout_mode = 2
 text = "Join"
 
-[node name="address_entry" type="LineEdit" parent="canvas_layer/main_menu/margin/VBoxContainer"]
+[node name="address_entry" type="LineEdit" parent="canvas_layer/main_menu/margin/list"]
 layout_mode = 2
 placeholder_text = "Address to Join"
 alignment = 1
@@ -54,5 +54,5 @@ alignment = 1
 _spawnable_scenes = PackedStringArray("res://frog/frog.tscn")
 spawn_path = NodePath("..")
 
-[connection signal="pressed" from="canvas_layer/main_menu/margin/VBoxContainer/host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="canvas_layer/main_menu/margin/VBoxContainer/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="canvas_layer/main_menu/margin/list/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="canvas_layer/main_menu/margin/list/join" to="." method="_on_join_pressed"]
