@@ -11,9 +11,6 @@ var tiles: Array[Vector2i] = [current_head]
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 enum DIR { UP, DOWN, RIGHT, LEFT }
 
-func _ready() -> void:
-	init()
-
 func init() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
