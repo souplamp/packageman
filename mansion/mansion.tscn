@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d27q3sjq0cdpc"]
+[gd_scene load_steps=27 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
 [ext_resource type="Script" path="res://mansion/frog.gd" id="3_bepfw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
+[ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="5_sjvnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
 texture = ExtResource("2_f1icw")
@@ -511,6 +512,118 @@ height = 16
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6f68"]
 size = Vector2(8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi5v3"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwhhr"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2tio"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c20j7"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erd62"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlx43"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ayr3"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37na8"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fab0s"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ofcn"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duinx"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6kui"]
+atlas = ExtResource("5_sjvnj")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phtdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi5v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwhhr")
+}],
+"loop": true,
+"name": &"hop_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2tio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c20j7")
+}],
+"loop": true,
+"name": &"hop_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erd62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlx43")
+}],
+"loop": true,
+"name": &"hop_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ayr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37na8")
+}],
+"loop": true,
+"name": &"hop_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fab0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ofcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duinx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6kui")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="mansion" type="Node2D"]
 script = ExtResource("1_4p7eg")
 
@@ -540,6 +653,7 @@ position = Vector2(56, 56)
 script = ExtResource("3_bepfw")
 
 [node name="sprite" type="Sprite2D" parent="frog"]
+visible = false
 scale = Vector2(0.5625, 0.5625)
 texture = SubResource("NoiseTexture2D_sya4d")
 
@@ -548,5 +662,11 @@ shape = SubResource("RectangleShape2D_a6f68")
 
 [node name="RayCast2D" type="RayCast2D" parent="frog"]
 target_position = Vector2(0, 16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="frog"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_phtdb")
+animation = &"hop_down"
+frame_progress = 0.242412
 
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]
