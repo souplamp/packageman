@@ -14,9 +14,7 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
 
-
 func _physics_process(delta):
-	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# snap to integer
@@ -30,7 +28,6 @@ func _physics_process(delta):
 	
 	direction = direction.normalized()
 	
-	
 	# detect wall
 	if direction != Vector2.ZERO:
 		raycast.target_position = direction * 16
@@ -39,7 +36,6 @@ func _physics_process(delta):
 		last_direction = direction # for anims
 		
 		wall_in_way = raycast.is_colliding()
-	
 	
 	# snap to tile when not moving
 	if velocity == Vector2.ZERO:
@@ -56,8 +52,6 @@ func _physics_process(delta):
 			if direction.x < 0 or direction.y < 0:
 				velocity /= 2
 			can_move = false
-	
-	
 	
 	# animation
 	if velocity.x > 0:
@@ -85,8 +79,7 @@ func _physics_process(delta):
 			
 	else:
 		animsprite.play()
-
-
+	
 	move_and_slide()
 
 # return true if tile_position is multiple of 16 (centered on tile)
