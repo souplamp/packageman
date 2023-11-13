@@ -14,21 +14,8 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
 
-var color: Color
-
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
-
-func _ready() -> void:
-	if not is_multiplayer_authority(): return
-
-@rpc("call_local")
-func set_color() -> void:
-	if animsprite:
-		animsprite.set("modulate", color)
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
 	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
@@ -43,6 +30,7 @@ func _physics_process(delta):
 	
 	direction = direction.normalized()
 	
+	
 	# detect wall
 	if direction != Vector2.ZERO:
 		raycast.target_position = direction * 16
@@ -52,10 +40,11 @@ func _physics_process(delta):
 		
 		wall_in_way = raycast.is_colliding()
 	
+	
 	# snap to tile when not moving
 	if velocity == Vector2.ZERO:
 		can_move = true
-		position = snapped(position, Vector2(8, 8))
+		position = snapped(position, Vector2(8,8))
 	
 	# stop moving when tile_position is multiple of 16 (the tile size) and is currently moving
 	if check_position_tile() and (not can_move):
@@ -67,6 +56,8 @@ func _physics_process(delta):
 			if direction.x < 0 or direction.y < 0:
 				velocity /= 2
 			can_move = false
+	
+	
 	
 	# animation
 	if velocity.x > 0:
@@ -94,7 +85,8 @@ func _physics_process(delta):
 			
 	else:
 		animsprite.play()
-	
+
+
 	move_and_slide()
 
 # return true if tile_position is multiple of 16 (centered on tile)
