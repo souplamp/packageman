@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw00t2h7iqk8r"]
+
+[ext_resource type="PackedScene" uid="uid://d27q3sjq0cdpc" path="res://mansion/mansion.tscn" id="1_ba5ph"]
+[ext_resource type="Script" path="res://main/main.gd" id="1_htm36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gslkc"]
+bg_color = Color(0.00784314, 0.027451, 0.0627451, 0.941176)
+
+[node name="main" type="Node"]
+script = ExtResource("1_htm36")
+
+[node name="mansion" parent="." instance=ExtResource("1_ba5ph")]
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="main_menu" type="PanelContainer" parent="canvas_layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gslkc")
+
+[node name="margin" type="MarginContainer" parent="canvas_layer/main_menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="list" type="VBoxContainer" parent="canvas_layer/main_menu/margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="Label" parent="canvas_layer/main_menu/margin/list"]
+layout_mode = 2
+text = "Packageman"
+horizontal_alignment = 1
+
+[node name="host" type="Button" parent="canvas_layer/main_menu/margin/list"]
+layout_mode = 2
+text = "Host"
+
+[node name="join" type="Button" parent="canvas_layer/main_menu/margin/list"]
+layout_mode = 2
+text = "Join"
+
+[node name="address_entry" type="LineEdit" parent="canvas_layer/main_menu/margin/list"]
+layout_mode = 2
+placeholder_text = "Address to Join"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://frog/frog.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="canvas_layer/main_menu/margin/list/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="canvas_layer/main_menu/margin/list/join" to="." method="_on_join_pressed"]
