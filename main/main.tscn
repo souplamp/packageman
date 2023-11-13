@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw00t2h7iqk8r"]
+[gd_scene load_steps=3 format=3 uid="uid://cw00t2h7iqk8r"]
 
-[ext_resource type="PackedScene" uid="uid://d27q3sjq0cdpc" path="res://mansion/mansion.tscn" id="1_ba5ph"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_htm36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gslkc"]
@@ -8,8 +7,6 @@ bg_color = Color(0.00784314, 0.027451, 0.0627451, 0.941176)
 
 [node name="main" type="Node"]
 script = ExtResource("1_htm36")
-
-[node name="mansion" parent="." instance=ExtResource("1_ba5ph")]
 
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 

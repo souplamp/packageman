@@ -24,7 +24,7 @@ func _on_host_pressed():
 	multiplayer.peer_connected.connect(add_player)
 	
 	add_player(multiplayer.get_unique_id())
-	mansion.start_game()
+	#mansion.start_game()
 
 func _on_join_pressed():
 	main_menu.hide()
@@ -32,4 +32,4 @@ func _on_join_pressed():
 	enet_peer.create_client("localhost", PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	
-	mansion.start_game()
+	#mansion.start_game()
