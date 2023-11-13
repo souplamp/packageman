@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d27q3sjq0cdpc"]
+[gd_scene load_steps=10 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
+[ext_resource type="Texture2D" uid="uid://1nt6crobw38c" path="res://assets/snake.png" id="3_xavw5"]
 [ext_resource type="AudioStream" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
@@ -482,20 +483,8 @@ texture = ExtResource("2_f1icw")
 5:5/0/physics_layer_0/angular_velocity = 0.0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="Gradient" id="Gradient_uxbib"]
-offsets = PackedFloat32Array(0, 0.554839, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2vxk7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_88w1u"]
-width = 16
-height = 16
-color_ramp = SubResource("Gradient_uxbib")
-noise = SubResource("FastNoiseLite_2vxk7")
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vw1uk"]
-texture = SubResource("NoiseTexture2D_88w1u")
+texture = ExtResource("3_xavw5")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
