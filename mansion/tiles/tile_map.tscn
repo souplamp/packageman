@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://u34w3ufia7gm"]
-
-[ext_resource type="TileSet" uid="uid://dmum2h85xy4b0" path="res://tiles/tile_map.tres" id="1_fmgi0"]
-
-[node name="TileMap" type="TileMap"]
-tile_set = ExtResource("1_fmgi0")
-format = 2

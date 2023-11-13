@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
-[ext_resource type="AudioStream" uid="uid://c53r2s0i7qoum" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
+[ext_resource type="AudioStream" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
 texture = ExtResource("2_f1icw")
@@ -477,6 +477,10 @@ texture = ExtResource("2_f1icw")
 5:7/0/terrains_peering_bit/left_side = 0
 5:7/0/terrains_peering_bit/top_left_corner = 0
 5:7/0/terrains_peering_bit/top_side = 0
+5:5/0 = 0
+5:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:5/0/physics_layer_0/angular_velocity = 0.0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="Gradient" id="Gradient_uxbib"]
 offsets = PackedFloat32Array(0, 0.554839, 1)
@@ -535,6 +539,13 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Doors"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array(65542, 327680, 5, 65548, 327680, 5, 65554, 327680, 5, 458766, 327680, 5, 458762, 327680, 5, 851970, 327680, 5, 851990, 327680, 5, 1114119, 327680, 5, 1114129, 327680, 5, 1245188, 327680, 5, 1245204, 327680, 5, 983052, 327680, 5, 327684, 327680, 5, 327700, 327680, 5)
 script = ExtResource("3_fp053")
 
 [node name="move" type="Timer" parent="maze"]
