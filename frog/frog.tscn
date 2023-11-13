@@ -131,10 +131,6 @@ properties/2/path = NodePath("AnimatedSprite2D:frame")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
-properties/3/path = NodePath(".:color")
-properties/3/spawn = false
-properties/3/sync = false
-properties/3/watch = true
 
 [node name="frog" type="CharacterBody2D"]
 position = Vector2(56, 56)
