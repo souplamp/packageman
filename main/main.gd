@@ -13,6 +13,7 @@ func add_player(peer_id):
 	var player = FROG.instantiate()
 	player.name = str(peer_id)
 	player.color = [Color.RED, Color.WHITE, Color.PURPLE, Color.DARK_ORANGE].pick_random()
+	player.set_color.rpc()
 	add_child(player)
 
 func _on_host_pressed():

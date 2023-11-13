@@ -21,11 +21,11 @@ func _enter_tree():
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): return
-	set_color.rpc()
 
 @rpc("call_local")
 func set_color() -> void:
-	animsprite.set("modulate", color)
+	if animsprite:
+		animsprite.set("modulate", color)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
