@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://d27q3sjq0cdpc"]
+[gd_scene load_steps=22 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="TileSet" uid="uid://j2bf0skufwqp" path="res://tiles/tile_map.tres" id="2_3sn8s"]
 [ext_resource type="Script" path="res://mansion/frog.gd" id="3_bepfw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
 [ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="5_sjvnj"]
+[ext_resource type="PackedScene" uid="uid://bpnqofg5ahq2" path="res://packages/package.tscn" id="6_gdq7p"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sya4d"]
 width = 16
@@ -157,7 +158,7 @@ script = ExtResource("3_fp053")
 wait_time = 0.2
 
 [node name="frog" type="CharacterBody2D" parent="."]
-position = Vector2(56, 56)
+position = Vector2(216, 360)
 script = ExtResource("3_bepfw")
 
 [node name="sprite" type="Sprite2D" parent="frog"]
@@ -179,5 +180,9 @@ frame_progress = 0.242412
 
 [node name="Camera2D" type="Camera2D" parent="frog"]
 zoom = Vector2(2, 2)
+
+[node name="package" parent="." instance=ExtResource("6_gdq7p")]
+z_index = -1
+position = Vector2(216, 312)
 
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]
