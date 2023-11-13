@@ -149,5 +149,8 @@ sprite_frames = SubResource("SpriteFrames_phtdb")
 animation = &"hop_down"
 frame_progress = 0.242412
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_1oth0")

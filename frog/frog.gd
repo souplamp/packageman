@@ -13,6 +13,7 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
+@onready var camera = $Camera2D
 
 var color: Color
 
@@ -21,6 +22,7 @@ func _enter_tree():
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): return
+	camera.make_current()
 
 @rpc("call_local")
 func set_color() -> void:
