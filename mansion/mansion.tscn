@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://mansion/frog.gd" id="3_bepfw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
 [ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="5_sjvnj"]
-[ext_resource type="PackedScene" uid="uid://bpnqofg5ahq2" path="res://packages/package.tscn" id="6_gdq7p"]
+[ext_resource type="PackedScene" uid="uid://brxo1o1yumcab" path="res://packages/package_spawner.tscn" id="6_gdq7p"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sya4d"]
 width = 16
@@ -181,8 +181,7 @@ frame_progress = 0.242412
 [node name="Camera2D" type="Camera2D" parent="frog"]
 zoom = Vector2(2, 2)
 
-[node name="package" parent="." instance=ExtResource("6_gdq7p")]
-z_index = -1
+[node name="package_spawner" parent="." instance=ExtResource("6_gdq7p")]
 position = Vector2(216, 312)
 
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]

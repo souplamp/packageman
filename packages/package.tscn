@@ -1,35 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpnqofg5ahq2"]
-
-[ext_resource type="Script" path="res://packages/package.gd" id="1_wu0b8"]
+[gd_scene load_steps=4 format=3 uid="uid://d1cowkvjpgavk"]
 
 [sub_resource type="Gradient" id="Gradient_h51oa"]
 offsets = PackedFloat32Array(0, 0.256684, 1)
 colors = PackedColorArray(0.816385, 0.534401, 0.333176, 1, 0.741605, 0.468034, 0.260708, 1, 0.604509, 0.346362, 0.12785, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rne5c"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agu0s"]
 gradient = SubResource("Gradient_h51oa")
 width = 8
 height = 8
 fill_from = Vector2(0.45584, 0.105413)
 fill_to = Vector2(0.928775, 0.94302)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rriem"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3av73"]
 size = Vector2(8, 8)
 
 [node name="package" type="Node2D"]
-script = ExtResource("1_wu0b8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 0
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = SubResource("GradientTexture2D_rne5c")
+texture = SubResource("GradientTexture2D_agu0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_rriem")
+shape = SubResource("RectangleShape2D_3av73")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

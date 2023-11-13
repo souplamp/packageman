@@ -1,5 +1,7 @@
 extends Node2D
 
+var package = preload("res://packages/package.tscn")
+
 var is_picked_up: bool = false
 var is_delivered: bool = true
 
@@ -13,8 +15,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	pass
 
 func _on_timer_timeout():
-	print("yo!")
+	var pac = package.instantiate()
+	add_child(pac)
+	print("sup")

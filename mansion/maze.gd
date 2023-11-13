@@ -13,6 +13,8 @@ enum DIR { UP, DOWN, RIGHT, LEFT }
 func _ready() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
+	
+	print(get_used_cells(2))
 
 func move() -> void:
 	print(tiles)
