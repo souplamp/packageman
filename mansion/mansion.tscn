@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d27q3sjq0cdpc"]
+[gd_scene load_steps=11 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1nt6crobw38c" path="res://assets/snake.png" id="3_xavw5"]
 [ext_resource type="AudioStream" uid="uid://c53r2s0i7qoum" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
 [ext_resource type="PackedScene" uid="uid://dypiph6b5s62m" path="res://frog/frog.tscn" id="6_p1fgf"]
+[ext_resource type="Texture2D" uid="uid://ut5lf5etomt2" path="res://assets/frogicon.png" id="7_kq1t0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
 texture = ExtResource("2_f1icw")
@@ -500,7 +501,13 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_jspbo")
 sources/1 = SubResource("TileSetAtlasSource_vw1uk")
 
-[node name="mansion" type="Node2D"]
+[node name="mansion" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_4p7eg")
 
 [node name="maze" type="TileMap" parent="."]
@@ -535,6 +542,24 @@ pitch_scale = 1.22
 
 [node name="frog" parent="." instance=ExtResource("6_p1fgf")]
 position = Vector2(56, 56)
+
+[node name="hbox" type="HBoxContainer" parent="frog"]
+offset_left = -97.0
+offset_top = -96.0
+offset_right = 35.0
+offset_bottom = -67.0
+
+[node name="icon" type="TextureRect" parent="frog/hbox"]
+layout_mode = 2
+texture = ExtResource("7_kq1t0")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="count" type="RichTextLabel" parent="frog/hbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "3"
+scroll_active = false
 
 [connection signal="tile_snake" from="maze" to="frog" method="_on_maze_tile_snake"]
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]

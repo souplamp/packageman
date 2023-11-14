@@ -4,6 +4,8 @@ signal ask_for_tile(location: Vector2i)
 signal pause_maze()
 signal frog_died()
 
+var alive: bool = true
+
 const SPEED = 64.0
 const JUMP_VELOCITY = -400.0
 
@@ -26,7 +28,10 @@ func _ready() -> void:
 	camera.make_current()
 
 func die() -> void:
-	can_move = true
+	if !alive: return
+	alive = false
+	
+	can_move = false
 	velocity = Vector2.ZERO
 	
 	anim_player.play("die")

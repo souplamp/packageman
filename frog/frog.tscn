@@ -118,39 +118,39 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_f0j06"]
+[sub_resource type="Animation" id="Animation_ybs3u"]
 resource_name = "die"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.0980731, 0.0980731),
+"transitions": PackedFloat32Array(0.227, 0.227),
 "update": 0,
 "values": [0.0, -6.28319]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.0980731, 0.0980731),
+"transitions": PackedFloat32Array(0.227, 0.227),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.05, 0.05)]
+"values": [Vector2(0.75, 0.75), Vector2(0.05, 0.05)]
 }
 
-[sub_resource type="Animation" id="Animation_fk2xy"]
+[sub_resource type="Animation" id="Animation_82qpu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -162,20 +162,20 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0.75, 0.75)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xtwll"]
 _data = {
-"RESET": SubResource("Animation_fk2xy"),
-"die": SubResource("Animation_f0j06")
+"RESET": SubResource("Animation_82qpu"),
+"die": SubResource("Animation_ybs3u")
 }
 
 [node name="frog" type="CharacterBody2D"]
