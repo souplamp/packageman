@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+signal ask_for_tile(location: Vector2i)
+signal pause_maze()
+signal frog_died()
+
 const SPEED = 64.0
 const JUMP_VELOCITY = -400.0
 
@@ -14,13 +18,28 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
 @onready var camera = $Camera2D
+@onready var anim_player = $AnimationPlayer
 
 var color: Color
 
 func _ready() -> void:
 	camera.make_current()
 
+func die() -> void:
+	can_move = true
+	velocity = Vector2.ZERO
+	
+	anim_player.play("die")
+	await anim_player.animation_finished
+	anim_player.play("RESET")
+	
+	emit_signal("frog_died")
+
 func _physics_process(delta):
+	
+	#print(position)
+	emit_signal("ask_for_tile", position)
+	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# snap to integer
@@ -94,3 +113,8 @@ func check_position_tile():
 		return true
 	else:
 		return false
+
+func _on_maze_tile_snake(state):
+	if state: 
+		emit_signal("pause_maze")
+		die()

@@ -1,5 +1,7 @@
 extends TileMap
 
+signal tile_snake(state: bool)
+
 @onready var timer: Timer = $move
 @onready var snake_tick: AudioStreamPlayer = $snake_tick
 
@@ -11,26 +13,48 @@ var tiles: Array[Vector2i] = [current_head]
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 enum DIR { UP, DOWN, RIGHT, LEFT }
 
-func _ready() -> void: pass
+var paused: bool = false
+
+func _ready() -> void:
+	pass
 
 func init() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
 
+func reset() -> void:
+	timer.stop()
+	for t in tiles: erase_cell(1, t)
+	current_head = Vector2i(12, 10)
+	tiles = [current_head]
+
 func move() -> void:
-	var invalid: bool = true
-	var next_head: Vector2i = current_head + dir.pick_random()
+	if paused: return
+	
+	var temp_dir: Array[Vector2i] = dir.duplicate()
+	var next_head: Vector2i = current_head + temp_dir.pick_random()
+	
+	var invalid: bool = !validate_tile(next_head)
 	
 	while invalid:
-		next_head = current_head + dir.pick_random()
-		var ctd: TileData = get_cell_tile_data(0, next_head)
-		var std: TileData = get_cell_tile_data(1, next_head)
+		var random_dir: Vector2i 
+		if temp_dir: random_dir = current_head + temp_dir.pick_random()
 		
-		invalid = ctd != null or std != null
+		var index = temp_dir.find(random_dir)
+		if index != -1: temp_dir.remove_at(index)
+		
+		next_head = random_dir
+		invalid = !validate_tile(next_head)
+		
 		await get_tree().process_frame
-	current_head = next_head
 	
+	current_head = next_head
 	update_tiles()
+
+func validate_tile(head: Vector2i) -> bool:
+	var ctd: TileData = get_cell_tile_data(0, head)
+	var std: TileData = get_cell_tile_data(1, head)
+	return !(ctd != null or std != null)
 
 func update_tiles() -> void:
 	if len(tiles) >= length:
@@ -42,3 +66,8 @@ func update_tiles() -> void:
 func _on_move_timeout():
 	snake_tick.play()
 	move()
+
+func _on_frog_ask_for_tile(location):
+	var pos = Vector2i(location) / 16 - Vector2i.ONE
+	var std: TileData = get_cell_tile_data(1, pos)
+	emit_signal("tile_snake", std != null)

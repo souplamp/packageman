@@ -534,5 +534,10 @@ volume_db = 3.0
 pitch_scale = 1.22
 
 [node name="frog" parent="." instance=ExtResource("6_p1fgf")]
+position = Vector2(56, 56)
 
+[connection signal="tile_snake" from="maze" to="frog" method="_on_maze_tile_snake"]
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]
+[connection signal="ask_for_tile" from="frog" to="maze" method="_on_frog_ask_for_tile"]
+[connection signal="frog_died" from="frog" to="." method="_on_frog_died"]
+[connection signal="pause_maze" from="frog" to="." method="_on_frog_pause_maze"]
