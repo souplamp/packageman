@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Packageman"
-run/main_scene="res://main/main.tscn"
+run/main_scene="res://mansion/mansion.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=430
-window/size/viewport_height=400
+window/size/viewport_width=860
+window/size/viewport_height=800
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/stretch/scale=2.0
@@ -28,3 +28,4 @@ window/stretch/scale=2.0
 textures/canvas_textures/default_texture_filter=0
 textures/decals/filter=0
 textures/light_projectors/filter=0
+environment/defaults/default_clear_color=Color(0.156863, 0.192157, 0.0784314, 1)
