@@ -18,19 +18,30 @@ func init() -> void:
 	set_cell(1, current_head, 1, Vector2i.ZERO)
 
 func move() -> void:
-	var invalid: bool = true
-	var next_head: Vector2i = current_head + dir.pick_random()
+	var temp_dir: Array[Vector2i] = dir.duplicate()
+	var next_head: Vector2i = current_head + temp_dir.pick_random()
+	
+	var invalid: bool = !validate_tile(next_head)
 	
 	while invalid:
-		next_head = current_head + dir.pick_random()
-		var ctd: TileData = get_cell_tile_data(0, next_head)
-		var std: TileData = get_cell_tile_data(1, next_head)
+		var random_dir: Vector2i 
+		if temp_dir: random_dir = current_head + temp_dir.pick_random()
 		
-		invalid = ctd != null or std != null
+		var index = temp_dir.find(random_dir)
+		if index != -1: temp_dir.remove_at(index)
+		
+		next_head = random_dir
+		invalid = !validate_tile(next_head)
+		
 		await get_tree().process_frame
-	current_head = next_head
 	
+	current_head = next_head
 	update_tiles()
+
+func validate_tile(head: Vector2i) -> bool:
+	var ctd: TileData = get_cell_tile_data(0, head)
+	var std: TileData = get_cell_tile_data(1, head)
+	return !(ctd != null or std != null)
 
 func update_tiles() -> void:
 	if len(tiles) >= length:
