@@ -18,6 +18,7 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var raycast = $RayCast2D
 @onready var animsprite = $AnimatedSprite2D
 @onready var camera = $Camera2D
+@onready var anim_player = $AnimationPlayer
 
 var color: Color
 
@@ -28,11 +29,9 @@ func die() -> void:
 	can_move = true
 	velocity = Vector2.ZERO
 	
-	#replace anim player
-	#while true:
-	#	scale /= 1.1
-	#	rotation += deg_to_rad(15)
-	#	await get_tree().process_frame
+	anim_player.play("die")
+	await anim_player.animation_finished
+	anim_player.play("RESET")
 	
 	emit_signal("frog_died")
 
