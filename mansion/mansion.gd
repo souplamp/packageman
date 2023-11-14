@@ -1,4 +1,5 @@
 extends Node2D
 
-func start_game() -> void:
-	$maze.init()
+@onready var maze: TileMap = $maze
+
+func _ready() -> void: maze.init()

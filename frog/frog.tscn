@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dypiph6b5s62m"]
+[gd_scene load_steps=17 format=3 uid="uid://dypiph6b5s62m"]
 
 [ext_resource type="Script" path="res://frog/frog.gd" id="1_slamp"]
 [ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="2_40fiv"]
@@ -118,20 +118,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1oth0"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-properties/1/path = NodePath("AnimatedSprite2D:animation")
-properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
-properties/2/path = NodePath("AnimatedSprite2D:frame")
-properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
-
 [node name="frog" type="CharacterBody2D"]
 position = Vector2(56, 56)
 collision_layer = 2
@@ -150,6 +136,4 @@ animation = &"hop_down"
 frame_progress = 0.242412
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_1oth0")
+zoom = Vector2(2, 2)

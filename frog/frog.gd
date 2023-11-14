@@ -17,21 +17,10 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 
 var color: Color
 
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
-
 func _ready() -> void:
-	if not is_multiplayer_authority(): return
 	camera.make_current()
 
-@rpc("call_local")
-func set_color() -> void:
-	if animsprite:
-		animsprite.set("modulate", color)
-
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
-	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# snap to integer
