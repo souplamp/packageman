@@ -7,7 +7,7 @@ signal tile_snake(state: bool)
 
 var current_head: Vector2i = Vector2i(12, 10)
 
-var length: int = 5
+var length: int = 10
 var tiles: Array[Vector2i] = [current_head]
 
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
