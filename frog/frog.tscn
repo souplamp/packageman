@@ -119,7 +119,6 @@ animations = [{
 }]
 
 [node name="frog" type="CharacterBody2D"]
-position = Vector2(56, 56)
 collision_layer = 2
 script = ExtResource("1_slamp")
 
@@ -136,4 +135,3 @@ animation = &"hop_down"
 frame_progress = 0.242412
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)

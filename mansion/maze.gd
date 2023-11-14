@@ -1,5 +1,7 @@
 extends TileMap
 
+signal tile_snake(state: bool)
+
 @onready var timer: Timer = $move
 @onready var snake_tick: AudioStreamPlayer = $snake_tick
 
@@ -11,13 +13,24 @@ var tiles: Array[Vector2i] = [current_head]
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 enum DIR { UP, DOWN, RIGHT, LEFT }
 
-func _ready() -> void: pass
+var paused: bool = false
+
+func _ready() -> void:
+	pass
 
 func init() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
 
+func reset() -> void:
+	timer.stop()
+	for t in tiles: erase_cell(1, t)
+	current_head = Vector2i(12, 10)
+	tiles = [current_head]
+
 func move() -> void:
+	if paused: return
+	
 	var temp_dir: Array[Vector2i] = dir.duplicate()
 	var next_head: Vector2i = current_head + temp_dir.pick_random()
 	
@@ -53,3 +66,8 @@ func update_tiles() -> void:
 func _on_move_timeout():
 	snake_tick.play()
 	move()
+
+func _on_frog_ask_for_tile(location):
+	var pos = Vector2i(location) / 16 - Vector2i.ONE
+	var std: TileData = get_cell_tile_data(1, pos)
+	emit_signal("tile_snake", std != null)
