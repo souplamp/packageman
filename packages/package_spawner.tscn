@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://brxo1o1yumcab"]
+
+[ext_resource type="Script" path="res://packages/package_spawner.gd" id="1_4t87k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rriem"]
+size = Vector2(8, 8)
+
+[node name="package_spawner" type="Node2D"]
+script = ExtResource("1_4t87k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_rriem")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

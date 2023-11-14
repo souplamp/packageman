@@ -21,6 +21,8 @@ func _ready() -> void:
 func init() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
+	
+	print(get_used_cells(2))
 
 func reset() -> void:
 	timer.stop()
