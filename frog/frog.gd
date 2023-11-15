@@ -31,6 +31,8 @@ func die() -> void:
 	if !alive: return
 	alive = false
 	
+	$die.play()
+	
 	can_move = false
 	velocity = Vector2.ZERO
 	
@@ -82,6 +84,7 @@ func _physics_process(delta):
 			if direction.x < 0 or direction.y < 0:
 				velocity /= 2
 			can_move = false
+			if !$hop.is_playing(): $hop.play()
 	
 	# animation
 	if velocity.x > 0:

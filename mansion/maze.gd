@@ -3,7 +3,7 @@ extends TileMap
 signal tile_snake(state: bool)
 
 @onready var timer: Timer = $move
-@onready var snake_tick: AudioStreamPlayer = $snake_tick
+@onready var slither: AudioStreamPlayer2D = $slither
 
 var current_head: Vector2i = Vector2i(12, 10)
 
@@ -66,7 +66,7 @@ func update_tiles() -> void:
 	set_cell(1, current_head, 1, Vector2i.ZERO)
 
 func _on_move_timeout():
-	snake_tick.play()
+	if !slither.is_playing(): slither.play()
 	move()
 
 func _on_frog_ask_for_tile(location):

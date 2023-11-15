@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://q8kpdgl6erej"
+path="res://.godot/imported/Snake slither 2.wav-85f7a1ac5572cf4e84afeb8391ca283b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Snake slither 2.wav"
+dest_files=["res://.godot/imported/Snake slither 2.wav-85f7a1ac5572cf4e84afeb8391ca283b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
