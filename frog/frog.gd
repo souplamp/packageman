@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal ask_for_tile(location: Vector2i)
 signal pause_maze()
 signal frog_died()
+signal package_received()
 
 var alive: bool = true
 
@@ -131,4 +132,10 @@ func _on_maze_tile_snake(state):
 		die()
 
 func _on_area_area_entered(area):
-	package.show()
+	match area.name:
+		"package":
+			package.show()
+		"receive":
+			if package.visible:
+				package.hide()
+				emit_signal("package_received")

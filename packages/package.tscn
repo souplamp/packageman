@@ -36,11 +36,11 @@ script = ExtResource("1_5ob4t")
 [node name="sprite" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_agu0s")
 
-[node name="area" type="Area2D" parent="."]
+[node name="package" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
-[node name="collision" type="CollisionShape2D" parent="area"]
+[node name="collision" type="CollisionShape2D" parent="package"]
 shape = SubResource("RectangleShape2D_3av73")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
@@ -74,4 +74,4 @@ pitch_scale = 2.62
 autoplay = true
 max_distance = 75.0
 
-[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
+[connection signal="area_entered" from="package" to="." method="_on_area_area_entered"]

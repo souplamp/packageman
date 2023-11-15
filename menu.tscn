@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://3uu6bor3mmyc"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_ko7ne"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ko7ne")
+
+[node name="panelcont" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="centercont" type="CenterContainer" parent="panelcont"]
+layout_mode = 2
+
+[node name="vbox" type="VBoxContainer" parent="panelcont/centercont"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="panelcont/centercont/vbox"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "[wave]Packagefrog"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="start" type="Button" parent="panelcont/centercont/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Start"
+
+[node name="quit" type="Button" parent="panelcont/centercont/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Quit"
+
+[connection signal="pressed" from="panelcont/centercont/vbox/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="panelcont/centercont/vbox/quit" to="." method="_on_quit_pressed"]

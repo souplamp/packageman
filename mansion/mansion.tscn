@@ -521,8 +521,8 @@ stream_0/stream = ExtResource("4_yicem")
 stream_0/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_6lb2q"]
-offsets = PackedFloat32Array(0, 0.164865, 0.621622, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.740541, 0.740541, 0.740541, 1, 0.120338, 0.120338, 0.120338, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.0702703, 0.378378, 0.402703, 0.659459)
+colors = PackedColorArray(1, 1, 1, 1, 0.740541, 0.740541, 0.740541, 1, 0.120338, 0.120338, 0.120338, 1, 0.087899, 0.087899, 0.087899, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vuti4"]
 gradient = SubResource("Gradient_6lb2q")
@@ -604,7 +604,7 @@ pitch_scale = 1.04
 
 [node name="PointLight2D" type="PointLight2D" parent="frog"]
 scale = Vector2(3.53125, 3.53125)
-color = Color(0.698039, 0.698039, 0.698039, 1)
+color = Color(0.741176, 0.741176, 0.741176, 1)
 texture = SubResource("GradientTexture2D_vuti4")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -620,4 +620,5 @@ autoplay = true
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]
 [connection signal="ask_for_tile" from="frog" to="maze" method="_on_frog_ask_for_tile"]
 [connection signal="frog_died" from="frog" to="." method="_on_frog_died"]
+[connection signal="package_received" from="frog" to="." method="_on_frog_package_received"]
 [connection signal="pause_maze" from="frog" to="." method="_on_frog_pause_maze"]
