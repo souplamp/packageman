@@ -47,21 +47,29 @@ func spawn_receive() -> void:
 func game_over() -> void:
 	$canvas/panelcont.show()
 	$canvas/panelcont/centercont/label.text = \
-	"[center][wave]G A M E   O V E R !\n[font size=9][rainbow]SCORE:  " + str(packages)
+	"[center][wave]G A M E   O V E R !\n[font size=12][rainbow]SCORE:  " + str(packages)
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"): _on_frog_died()
 
 func _on_frog_died():
 	reset()
-	if lives == 0:
-		
-		return
 	lives -= 1
-	count.text = str(lives) + " Lives"
+	
+	var txt: String = str(lives) + " "
+	
+	if lives > 1: txt += "Lives"
+	elif lives == 1: txt += "Life"
+	elif lives == 0: 
+		txt = "[font color=red][shake]You Died"
+		game_over()
+	
+	count.text = txt
 
 func _on_frog_pause_maze():
 	maze.paused = true
 
 func _on_frog_package_received():
-	print("yahoo")
 	await current_receive.call_deferred("queue_free")
 	spawn_package()
 	spawn_receive()

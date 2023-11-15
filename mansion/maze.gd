@@ -8,7 +8,9 @@ signal tile_snake(state: bool)
 
 var current_head: Vector2i = Vector2i(12, 10)
 
-var length: int = 5
+var current_difficulty: int = 0
+
+var length: int = 3
 var tiles: Array[Vector2i] = [current_head]
 
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
@@ -28,6 +30,12 @@ func reset() -> void:
 	for t in tiles: erase_cell(1, t)
 	current_head = Vector2i(12, 10)
 	tiles = [current_head]
+
+func add_difficulty() -> void:
+	timer.wait_time -= 0.05
+	current_difficulty += 1
+	if current_difficulty % 2 == 0:
+		length += 1
 
 func move() -> void:
 	if paused: return

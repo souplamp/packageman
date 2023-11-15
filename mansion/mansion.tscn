@@ -571,6 +571,7 @@ autoplay = true
 max_distance = 250.0
 
 [node name="light" type="PointLight2D" parent="maze"]
+visible = false
 scale = Vector2(3.53125, 3.53125)
 color = Color(0.258824, 0.12549, 0.105882, 1)
 texture = SubResource("GradientTexture2D_vuti4")
@@ -592,6 +593,7 @@ stretch_mode = 6
 [node name="count" type="RichTextLabel" parent="canvas/hbox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+bbcode_enabled = true
 text = "3 Lives"
 scroll_active = false
 
@@ -602,6 +604,7 @@ offset_right = 171.0
 offset_bottom = 53.0
 theme_override_constants/line_separation = -6
 theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
 text = "Score: 0"
 fit_content = true
 autowrap_mode = 0
@@ -622,7 +625,7 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center][wave]G A M E   O V E R !
-[font size=9][rainbow]SCORE: 0"
+[font size=12][rainbow]SCORE: 0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -641,7 +644,7 @@ pitch_scale = 1.04
 
 [node name="PointLight2D" type="PointLight2D" parent="frog"]
 scale = Vector2(3.53125, 3.53125)
-color = Color(0.741176, 0.741176, 0.741176, 1)
+color = Color(0.584314, 0.584314, 0.584314, 1)
 texture = SubResource("GradientTexture2D_vuti4")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
