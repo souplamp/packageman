@@ -10,16 +10,13 @@ var current_head: Vector2i = Vector2i(12, 10)
 
 var current_difficulty: int = 0
 
-var length: int = 3
+var length: int = 6
 var tiles: Array[Vector2i] = [current_head]
 
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 enum DIR { UP, DOWN, RIGHT, LEFT }
 
 var paused: bool = false
-
-func _ready() -> void:
-	pass
 
 func init() -> void:
 	timer.start()
@@ -32,10 +29,8 @@ func reset() -> void:
 	tiles = [current_head]
 
 func add_difficulty() -> void:
-	timer.wait_time -= 0.05
+	timer.wait_time -= 0.025
 	current_difficulty += 1
-	if current_difficulty % 2 == 0:
-		length += 1
 
 func move() -> void:
 	if paused: return

@@ -49,9 +49,6 @@ func game_over() -> void:
 	$canvas/panelcont/centercont/label.text = \
 	"[center][wave]G A M E   O V E R !\n[font size=12][rainbow]SCORE:  " + str(packages)
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"): _on_frog_died()
-
 func _on_frog_died():
 	reset()
 	lives -= 1
@@ -70,8 +67,8 @@ func _on_frog_pause_maze():
 	maze.paused = true
 
 func _on_frog_package_received():
-	await current_receive.call_deferred("queue_free")
 	spawn_package()
 	spawn_receive()
 	packages += 1
 	pack.text = "Score: " + str(packages)
+	maze.add_difficulty()

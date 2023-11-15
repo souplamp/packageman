@@ -138,4 +138,5 @@ func _on_area_area_entered(area):
 		"receive":
 			if package.visible:
 				package.hide()
+				area.get_parent().collect()
 				emit_signal("package_received")
