@@ -4,6 +4,7 @@ signal tile_snake(state: bool)
 
 @onready var timer: Timer = $move
 @onready var slither: AudioStreamPlayer2D = $slither
+@onready var light: PointLight2D = $light
 
 var current_head: Vector2i = Vector2i(12, 10)
 
@@ -21,8 +22,6 @@ func _ready() -> void:
 func init() -> void:
 	timer.start()
 	set_cell(1, current_head, 1, Vector2i.ZERO)
-	
-	
 
 func reset() -> void:
 	timer.stop()
@@ -67,7 +66,9 @@ func update_tiles() -> void:
 
 func _on_move_timeout():
 	if !slither.is_playing(): slither.play()
-	slither.position = 16 * (Vector2(current_head) + Vector2(1.5, 2.5))
+	var current_head_position = 16 * (Vector2(current_head))
+	slither.position = current_head_position
+	light.position = current_head_position
 	move()
 
 func _on_frog_ask_for_tile(location):

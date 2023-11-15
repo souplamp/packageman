@@ -3,9 +3,11 @@ extends Control
 @onready var maze: TileMap = $maze
 @onready var frog: CharacterBody2D = $frog
 @onready var count: RichTextLabel = $canvas/hbox/count
+@onready var pack: RichTextLabel = $canvas/package
 
 var current_receive
 
+var packages: int = 0
 var lives: int = 3
 
 func _ready() -> void:
@@ -43,7 +45,9 @@ func spawn_receive() -> void:
 	current_receive = rec
 
 func game_over() -> void:
-	pass
+	$canvas/panelcont.show()
+	$canvas/panelcont/centercont/label.text = \
+	"[center][wave]G A M E   O V E R !\n[font size=9][rainbow]SCORE:  " + str(packages)
 
 func _on_frog_died():
 	reset()
@@ -51,12 +55,15 @@ func _on_frog_died():
 		
 		return
 	lives -= 1
-	count.text = str(lives)
+	count.text = str(lives) + " Lives"
 
 func _on_frog_pause_maze():
 	maze.paused = true
 
 func _on_frog_package_received():
+	print("yahoo")
 	await current_receive.call_deferred("queue_free")
 	spawn_package()
 	spawn_receive()
+	packages += 1
+	pack.text = "Score: " + str(packages)
