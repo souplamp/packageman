@@ -10,7 +10,7 @@ var current_head: Vector2i = Vector2i(12, 10)
 
 var current_difficulty: int = 0
 
-var length: int = 6
+var length: int = 5
 var tiles: Array[Vector2i] = [current_head]
 
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
