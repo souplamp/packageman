@@ -1,7 +1,8 @@
 extends Control
+
 @onready var maze: TileMap = $maze
 @onready var frog: CharacterBody2D = $frog
-@onready var count: RichTextLabel = frog.get_node("hbox/count")
+@onready var count: RichTextLabel = $canvas/hbox/count
 
 var lives: int = 3
 

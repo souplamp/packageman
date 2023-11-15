@@ -1,10 +1,21 @@
-[gd_scene load_steps=20 format=3 uid="uid://dypiph6b5s62m"]
+[gd_scene load_steps=22 format=3 uid="uid://dypiph6b5s62m"]
 
 [ext_resource type="Script" path="res://frog/frog.gd" id="1_slamp"]
 [ext_resource type="Texture2D" uid="uid://c6tohs0h45frh" path="res://assets/froganims.png" id="2_40fiv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6f68"]
 size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_h51oa"]
+offsets = PackedFloat32Array(0, 0.256684, 1)
+colors = PackedColorArray(0.816385, 0.534401, 0.333176, 1, 0.741605, 0.468034, 0.260708, 1, 0.604509, 0.346362, 0.12785, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m8yg3"]
+gradient = SubResource("Gradient_h51oa")
+width = 8
+height = 8
+fill_from = Vector2(0.45584, 0.105413)
+fill_to = Vector2(0.928775, 0.94302)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi5v3"]
 atlas = ExtResource("2_40fiv")
@@ -182,11 +193,23 @@ _data = {
 collision_layer = 2
 script = ExtResource("1_slamp")
 
+[node name="area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="collision" type="CollisionShape2D" parent="area"]
+shape = SubResource("RectangleShape2D_a6f68")
+
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a6f68")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)
+
+[node name="package" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -3)
+texture = SubResource("GradientTexture2D_m8yg3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -201,3 +224,5 @@ zoom = Vector2(2, 2)
 libraries = {
 "": SubResource("AnimationLibrary_xtwll")
 }
+
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

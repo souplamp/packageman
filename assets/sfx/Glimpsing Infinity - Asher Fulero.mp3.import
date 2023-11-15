@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://f1pyprkl6xcy"
+path="res://.godot/imported/Glimpsing Infinity - Asher Fulero.mp3-1f52fc979321d1ebd02221fe886caffd.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Glimpsing Infinity - Asher Fulero.mp3"
+dest_files=["res://.godot/imported/Glimpsing Infinity - Asher Fulero.mp3-1f52fc979321d1ebd02221fe886caffd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

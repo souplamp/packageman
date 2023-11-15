@@ -1,0 +1,18 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://l0a847vrev2j"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_crwwt"]
+resource_name = "Reverb"
+room_size = 0.7
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_dbvsc"]
+resource_name = "Delay"
+tap1_delay_ms = 50.0
+tap2_delay_ms = 100.0
+feedback_delay_ms = 200.0
+feedback_level_db = -10.0
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectReverb_crwwt")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectDelay_dbvsc")
+bus/0/effect/1/enabled = true

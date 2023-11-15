@@ -6,8 +6,8 @@ signal frog_died()
 
 var alive: bool = true
 
-const SPEED = 64.0
-const JUMP_VELOCITY = -400.0
+const DEFAULT_SPEED = 64.0
+var current_speed = DEFAULT_SPEED
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -21,6 +21,7 @@ var last_direction = Vector2(1,0) # used for setting idle animation direction
 @onready var animsprite = $AnimatedSprite2D
 @onready var camera = $Camera2D
 @onready var anim_player = $AnimationPlayer
+@onready var package: Sprite2D = $package
 
 var color: Color
 
@@ -80,11 +81,13 @@ func _physics_process(delta):
 
 	# move when not moving (when can_move is true) and no wall is in way of raycast2d
 	if direction != Vector2.ZERO and can_move and (not wall_in_way):
-			velocity = direction * SPEED
+			velocity = direction * current_speed
 			if direction.x < 0 or direction.y < 0:
 				velocity /= 2
 			can_move = false
-			if !$hop.is_playing(): $hop.play()
+			if !$hop.is_playing(): 
+				$hop.stop()
+				$hop.play()
 	
 	# animation
 	if velocity.x > 0:
@@ -123,6 +126,9 @@ func check_position_tile():
 		return false
 
 func _on_maze_tile_snake(state):
-	if state: 
+	if state:
 		emit_signal("pause_maze")
 		die()
+
+func _on_area_area_entered(area):
+	package.show()

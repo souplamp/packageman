@@ -1,15 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://d27q3sjq0cdpc"]
+[gd_scene load_steps=19 format=3 uid="uid://d27q3sjq0cdpc"]
 
 [ext_resource type="Script" path="res://mansion/mansion.gd" id="1_4p7eg"]
 [ext_resource type="Texture2D" uid="uid://b6bxvwji0obe2" path="res://assets/tileset.png" id="2_f1icw"]
 [ext_resource type="Script" path="res://mansion/maze.gd" id="3_fp053"]
 [ext_resource type="Texture2D" uid="uid://1nt6crobw38c" path="res://assets/snake.png" id="3_xavw5"]
+[ext_resource type="AudioStream" uid="uid://c53r2s0i7qoum" path="res://assets/RDM_Raw_MT40-ClHat.wav" id="4_yicem"]
 [ext_resource type="AudioStream" uid="uid://7nkuykr0ny4d" path="res://assets/sfx/Snake Slither 1.wav" id="5_ftl4i"]
 [ext_resource type="PackedScene" uid="uid://dypiph6b5s62m" path="res://frog/frog.tscn" id="6_p1fgf"]
 [ext_resource type="AudioStream" uid="uid://q8kpdgl6erej" path="res://assets/sfx/Snake slither 2.wav" id="6_w16e5"]
 [ext_resource type="Texture2D" uid="uid://ut5lf5etomt2" path="res://assets/frogicon.png" id="7_kq1t0"]
-[ext_resource type="AudioStream" uid="uid://oyl114cqj8qw" path="res://assets/sfx/Bonus 1-2.wav" id="9_h4rd1"]
 [ext_resource type="AudioStream" uid="uid://m7dybixcc5vt" path="res://assets/sfx/Bonus 1.wav" id="10_m5cba"]
+[ext_resource type="AudioStream" uid="uid://f1pyprkl6xcy" path="res://assets/sfx/Glimpsing Infinity - Asher Fulero.mp3" id="11_va75b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jspbo"]
 texture = ExtResource("2_f1icw")
@@ -516,8 +517,18 @@ stream_1/weight = 1.0
 streams_count = 1
 random_pitch = 1.45
 random_volume_offset_db = 0.0
-stream_0/stream = ExtResource("9_h4rd1")
+stream_0/stream = ExtResource("4_yicem")
 stream_0/weight = 1.0
+
+[sub_resource type="Gradient" id="Gradient_6lb2q"]
+offsets = PackedFloat32Array(0, 0.164865, 0.621622, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.740541, 0.740541, 0.740541, 1, 0.120338, 0.120338, 0.120338, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vuti4"]
+gradient = SubResource("Gradient_6lb2q")
+fill = 1
+fill_from = Vector2(0.475214, 0.483761)
+fill_to = Vector2(1, 1)
 
 [node name="mansion" type="Control"]
 layout_mode = 3
@@ -557,37 +568,53 @@ wait_time = 0.5
 stream = SubResource("AudioStreamRandomizer_msj11")
 pitch_scale = 1.09
 autoplay = true
+max_distance = 250.0
 
-[node name="frog" parent="." instance=ExtResource("6_p1fgf")]
-position = Vector2(56, 56)
+[node name="canvas" type="CanvasLayer" parent="."]
 
-[node name="hbox" type="HBoxContainer" parent="frog"]
-offset_left = -97.0
-offset_top = -96.0
-offset_right = 35.0
-offset_bottom = -67.0
+[node name="hbox" type="HBoxContainer" parent="canvas"]
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 129.0
+offset_bottom = 45.0
 
-[node name="icon" type="TextureRect" parent="frog/hbox"]
+[node name="icon" type="TextureRect" parent="canvas/hbox"]
 layout_mode = 2
 texture = ExtResource("7_kq1t0")
 expand_mode = 2
 stretch_mode = 6
 
-[node name="count" type="RichTextLabel" parent="frog/hbox"]
+[node name="count" type="RichTextLabel" parent="canvas/hbox"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "3"
 scroll_active = false
 
+[node name="frog" parent="." instance=ExtResource("6_p1fgf")]
+position = Vector2(56, 56)
+
 [node name="hop" type="AudioStreamPlayer" parent="frog"]
 stream = SubResource("AudioStreamRandomizer_ulobe")
 volume_db = -10.0
-pitch_scale = 0.46
 
 [node name="die" type="AudioStreamPlayer" parent="frog"]
 stream = ExtResource("10_m5cba")
 volume_db = -7.0
 pitch_scale = 1.04
+
+[node name="PointLight2D" type="PointLight2D" parent="frog"]
+scale = Vector2(3.53125, 3.53125)
+color = Color(0.698039, 0.698039, 0.698039, 1)
+texture = SubResource("GradientTexture2D_vuti4")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_va75b")
+volume_db = -7.0
+pitch_scale = 0.43
+autoplay = true
 
 [connection signal="tile_snake" from="maze" to="frog" method="_on_maze_tile_snake"]
 [connection signal="timeout" from="maze/move" to="maze" method="_on_move_timeout"]

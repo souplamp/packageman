@@ -15,6 +15,10 @@ run/main_scene="res://mansion/mansion.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://new_audio_bus_layout.tres"
+
 [display]
 
 window/size/viewport_width=860
@@ -28,4 +32,4 @@ window/stretch/scale=2.0
 textures/canvas_textures/default_texture_filter=0
 textures/decals/filter=0
 textures/light_projectors/filter=0
-environment/defaults/default_clear_color=Color(0.156863, 0.192157, 0.0784314, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

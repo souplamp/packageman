@@ -7,7 +7,7 @@ signal tile_snake(state: bool)
 
 var current_head: Vector2i = Vector2i(12, 10)
 
-var length: int = 10
+var length: int = 5
 var tiles: Array[Vector2i] = [current_head]
 
 var dir: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
@@ -67,6 +67,7 @@ func update_tiles() -> void:
 
 func _on_move_timeout():
 	if !slither.is_playing(): slither.play()
+	slither.position = 16 * (Vector2(current_head) + Vector2(1.5, 2.5))
 	move()
 
 func _on_frog_ask_for_tile(location):
